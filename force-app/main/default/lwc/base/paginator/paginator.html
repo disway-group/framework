@@ -1,0 +1,12 @@
+<template>
+  <div class="slds-grid slds-grid_align-spread slds-p-around_x-small">
+    <div>
+      <lightning-button-icon icon-name="utility:chevronleft" onclick={prev} alternative-text="Anterior"></lightning-button-icon>
+      <span class="slds-m-horizontal_small">Página {page} de {totalPages}</span>
+      <lightning-button-icon icon-name="utility:chevronright" onclick={next} alternative-text="Próxima"></lightning-button-icon>
+    </div>
+    <div>
+      <lightning-combobox label="Tamanho" value={pageSize} options={pageSizeOptions} onchange={changeSize}></lightning-combobox>
+    </div>
+  </div>
+</template>

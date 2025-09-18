@@ -1,0 +1,45 @@
+<template>
+  <c-error-boundary>
+    <article class="slds-card surface-card">
+      <div class="slds-card__header slds-grid slds-grid_align-spread slds-p-around_small bg-brand">
+        <h2 class="slds-text-heading_small">🌐 {title}</h2>
+        <div>
+          <lightning-input class="slds-m-right_small" type="text" label="CNPJ" value={cnpj} onchange={handleCnpjChange}></lightning-input>
+          <lightning-button class="btn-brand" label="Buscar" onclick={handleSearch}></lightning-button>
+        </div>
+      </div>
+
+      <div class="slds-card__body slds-p-horizontal_small">
+        <c-spinner visible={loading}></c-spinner>
+
+        <c-datatable-pro data={pagedRows} columns={columns} onrowaction={handleRowAction}></c-datatable-pro>
+        <c-paginator class="slds-m-top_small" page={page} total={total} page-size={pageSize} onchange={handlePageChange}></c-paginator>
+      </div>
+
+      <div class="slds-card__footer slds-p-around_small">
+        <lightning-button variant="destructive" label="Excluir selecionado" onclick={openConfirm}></lightning-button>
+      </div>
+    </article>
+
+    <section class="slds-m-top_medium">
+      <c-empty-state icon-name="utility:image" title="Arquivos do Registro" description="Envie anexos e gerencie a lista abaixo">
+        <div slot="action">
+          <c-file-uploader-pro record-id={demoRecordId} accept=".pdf,.png,.jpg"></c-file-uploader-pro>
+        </div>
+      </c-empty-state>
+    </section>
+
+    <c-confirm open={confirmOpen} message="Confirmar exclusão?" oncancel={closeConfirm} onok={handleConfirmOk}></c-confirm>
+
+    <c-modal title="Detalhes" open={detailOpen} oncancel={closeDetails}>
+      <div class="slds-p-around_small">
+        <p><strong>Id:</strong> {selected?.id}</p>
+        <p><strong>Nome:</strong> {selected?.name}</p>
+        <p><strong>CNPJ:</strong> {selected?.cnpj}</p>
+      </div>
+      <div slot="footer">
+        <lightning-button variant="neutral" label="Fechar" onclick={closeDetails}></lightning-button>
+      </div>
+    </c-modal>
+  </c-error-boundary>
+</template>

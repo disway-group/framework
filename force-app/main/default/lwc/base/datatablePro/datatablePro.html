@@ -1,0 +1,9 @@
+<template>
+  <template if:true={hasData}>
+    <lightning-datatable key-field="id" data={data} columns={columns} hide-checkbox-column={hideCheckbox}
+      onsave={handleSave} draft-values={draftValues} onrowaction={handleRowAction}></lightning-datatable>
+  </template>
+  <template if:false={hasData}>
+    <c-empty-state icon-name="utility:search" title="Nada por aqui" description={emptyMessage}></c-empty-state>
+  </template>
+</template>

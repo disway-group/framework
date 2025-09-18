@@ -1,0 +1,28 @@
+<template>
+  <div class="slds-box surface-card">
+    <lightning-file-upload
+      label={label}
+      name="fileUploader"
+      accept={accept}
+      record-id={recordId}
+      multiple={multiple}
+      onuploadfinished={handleUploadFinished}>
+    </lightning-file-upload>
+
+    <template if:true={files.length}>
+      <div class="slds-m-top_medium">
+        <h3 class="slds-text-title_caps">Arquivos</h3>
+        <ul class="slds-list_dotted slds-m-top_x-small">
+          <template for:each={files} for:item="f">
+            <li key={f.contentDocumentId} class="slds-m-vertical_x-small">
+              <lightning-icon icon-name="utility:attach" size="x-small"></lightning-icon>
+              <span class="slds-m-left_x-small">{f.title} ({f.fileType})</span>
+              <lightning-button-icon class="slds-m-left_small" icon-name="utility:delete" alternative-text="Remover"
+                onclick={remove} data-id={f.linkId}></lightning-button-icon>
+            </li>
+          </template>
+        </ul>
+      </div>
+    </template>
+  </div>
+</template>

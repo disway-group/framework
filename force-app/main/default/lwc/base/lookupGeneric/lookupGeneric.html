@@ -1,0 +1,50 @@
+<template>
+  <div class="slds-form-element">
+    <label class="slds-form-element__label" for="lookup-input">
+      {label} <template if:true={required}><abbr class="slds-required" title="required">*</abbr></template>
+    </label>
+    <div class="slds-form-element__control">
+      <template if:true={hasSelection} if:false={multi}>
+        <lightning-pill label={singleSelection?.label} onremove={clear}></lightning-pill>
+      </template>
+
+      <template if:true={multi}>
+        <template for:each={selections} for:item="p">
+          <lightning-pill key={p.id} label={p.label} name={p.id} onremove={removePill}></lightning-pill>
+        </template>
+      </template>
+
+      <div class="slds-combobox_container">
+        <div class="slds-combobox slds-dropdown-trigger slds-dropdown-trigger_click" role="combobox">
+          <div class="slds-combobox__form-element slds-input-has-icon slds-input-has-icon_right">
+            <lightning-input type="search" variant="label-hidden" placeholder={placeholder}
+              value={query} onchange={handleChange} onfocus={openMenu} onblur={handleBlur}
+              disabled={disabled} required={required} minlength={minChars} id="lookup-input">
+            </lightning-input>
+            <lightning-icon icon-name="utility:search" size="x-small" class="slds-input__icon slds-input__icon_right"></lightning-icon>
+          </div>
+          <div class="slds-dropdown slds-dropdown_length-5" if:true={open}>
+            <ul class="slds-listbox slds-listbox_vertical" role="presentation">
+              <template if:true={hasOptions}>
+                <template for:each={options} for:item="opt">
+                  <li key={opt.id} role="presentation" class="slds-listbox__item" onclick={select} data-id={opt.id} data-label={opt.title}>
+                    <div class="slds-media slds-listbox__option slds-listbox__option_plain" role="option">
+                      <div class="slds-media__body">
+                        <span class="slds-truncate">{opt.title}</span>
+                        <template if:true={opt.subtitle}><span class="slds-truncate slds-text-color_weak">{opt.subtitle}</span></template>
+                      </div>
+                    </div>
+                  </li>
+                </template>
+              </template>
+              <template if:false={hasOptions}>
+                <li class="slds-listbox__item slds-text-color_weak slds-p-around_small">Sem resultados</li>
+              </template>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <template if:true={helpText}><div class="slds-form-element__help">{helpText}</div></template>
+    </div>
+  </div>
+</template>

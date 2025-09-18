@@ -1,0 +1,9 @@
+<template>
+  <c-modal title={title} open={open} oncancel={handleCancel}>
+    <div class="slds-p-vertical_small">{message}</div>
+    <div slot="footer">
+      <lightning-button variant="neutral" label={cancelLabel} onclick={handleCancel}></lightning-button>
+      <lightning-button class="slds-m-left_small" variant="brand" label={okLabel} onclick={handleOk}></lightning-button>
+    </div>
+  </c-modal>
+</template>

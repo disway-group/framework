@@ -1,0 +1,6 @@
+.bg-brand { background-color: #16325c; color: #ffffff; }
+.text-brand { color: #16325c; }
+.text-muted { color: #706e6b; }
+.surface-card { background: #ffffff; border-radius: 0.5rem; box-shadow: 0 2px 4px rgba(0,0,0,.1); }
+.btn-brand { background-color: #16325c; color: #fff; border-radius: .25rem; padding: .5rem 1rem; }
+.btn-brand:hover { background-color: #0e243f; }

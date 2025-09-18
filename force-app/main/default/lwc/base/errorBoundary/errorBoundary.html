@@ -1,0 +1,6 @@
+<template>
+  <template if:true={hasError}>
+    <div class="slds-box slds-theme_error"><p>Algo deu errado ao renderizar este bloco.</p></div>
+  </template>
+  <template if:false={hasError}><slot></slot></template>
+</template>
