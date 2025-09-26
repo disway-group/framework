@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label>Framework Settings</label>
+    <pluralLabel>Framework Settings</pluralLabel>
+    <visibility>Public</visibility>
+    <description>Configurações globais do framework.</description>
+
+    <fields>
+        <fullName>Max_Queue_Retries__c</fullName>
+        <label>Max Queue Retries</label>
+        <type>Number</type><precision>3</precision><scale>0</scale>
+    </fields>
+    <fields>
+        <fullName>Default_Batch_Size__c</fullName>
+        <label>Default Batch Size</label>
+        <type>Number</type><precision>5</precision><scale>0</scale>
+    </fields>
+    <fields>
+        <fullName>Enable_Logging__c</fullName>
+        <label>Enable Logging</label>
+        <type>Checkbox</type><defaultValue>true</defaultValue>
+    </fields>
+    <fields>
+        <fullName>Retry_Backoff_Seconds__c</fullName>
+        <label>Retry Backoff Seconds</label>
+        <type>Number</type><precision>5</precision><scale>0</scale>
+    </fields>
+</CustomObject>

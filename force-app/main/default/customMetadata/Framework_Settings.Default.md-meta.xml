@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomMetadata xmlns="http://soap.sforce.com/2006/04/metadata"
+                xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <label>Default Framework Settings</label>
+    <protected>false</protected>
+    <values><field>Max_Queue_Retries__c</field><value xsi:type="xsd:int">3</value></values>
+    <values><field>Default_Batch_Size__c</field><value xsi:type="xsd:int">200</value></values>
+    <values><field>Enable_Logging__c</field><value xsi:type="xsd:boolean">true</value></values>
+    <values><field>Retry_Backoff_Seconds__c</field><value xsi:type="xsd:int">30</value></values>
+</CustomMetadata>
