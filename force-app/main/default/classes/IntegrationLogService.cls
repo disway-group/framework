@@ -175,68 +175,6 @@ public with sharing class IntegrationLogService {
     }
 
     /**
-     * @description Get logs by correlation ID
-     * @param correlationId Correlation ID to search for
-     * @return List<Integration_Log__c> List of matching logs
-     */
-    public static List<Integration_Log__c> getLogsByCorrelationId(String correlationId) {
-        try {
-            return [SELECT Id, Channel__c, Category__c, Context__c, Correlation_Id__c, 
-                           Error__c, Stacktrace__c, Duration_ms__c, Success__c,
-                           Request_Payload__c, Response_Payload__c, Status_Code__c, CreatedDate
-                    FROM Integration_Log__c 
-                    WHERE Correlation_Id__c = :correlationId 
-                    ORDER BY CreatedDate DESC];
-        } catch (Exception e) {
-            System.debug(LoggingLevel.ERROR, CLASS_NAME + '.getLogsByCorrelationId: ' + e.getMessage());
-            throw e;
-        }
-    }
-
-    /**
-     * @description Get logs by channel name
-     * @param channel Channel name to search for
-     * @param limitCount Maximum number of records to return
-     * @return List<Integration_Log__c> List of matching logs
-     */
-    public static List<Integration_Log__c> getLogsByChannel(String channel, Integer limitCount) {
-        try {
-            return [SELECT Id, Channel__c, Category__c, Context__c, Correlation_Id__c, 
-                           Error__c, Stacktrace__c, Duration_ms__c, Success__c,
-                           Request_Payload__c, Response_Payload__c, Status_Code__c, CreatedDate
-                    FROM Integration_Log__c 
-                    WHERE Channel__c = :channel 
-                    ORDER BY CreatedDate DESC 
-                    LIMIT :limitCount];
-        } catch (Exception e) {
-            System.debug(LoggingLevel.ERROR, CLASS_NAME + '.getLogsByChannel: ' + e.getMessage());
-            throw e;
-        }
-    }
-
-    /**
-     * @description Get error logs within a date range
-     * @param startDate Start date
-     * @param endDate End date
-     * @return List<Integration_Log__c> List of error logs
-     */
-    public static List<Integration_Log__c> getErrorLogs(Date startDate, Date endDate) {
-        try {
-            return [SELECT Id, Channel__c, Category__c, Context__c, Correlation_Id__c, 
-                           Error__c, Stacktrace__c, Duration_ms__c, Success__c,
-                           Request_Payload__c, Response_Payload__c, Status_Code__c, CreatedDate
-                    FROM Integration_Log__c 
-                    WHERE Success__c = false 
-                    AND CreatedDate >= :startDate 
-                    AND CreatedDate <= :endDate 
-                    ORDER BY CreatedDate DESC];
-        } catch (Exception e) {
-            System.debug(LoggingLevel.ERROR, CLASS_NAME + '.getErrorLogs: ' + e.getMessage());
-            throw e;
-        }
-    }
-
-    /**
      * @description Clean up old logs older than specified days
      * @param daysOld Number of days old
      * @return Integer Number of records deleted
